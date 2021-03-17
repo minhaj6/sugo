@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -12,15 +13,21 @@ func main() {
 	num := len(args)
 
 	if num < 1 {
-		fmt.Println("Provide filename as argument.")
-		return
+		files, err := filepath.Glob("*")
+		if err != nil {
+			log.Fatal(err)
+		}
+		args = files
+		num = len(args)
 	}
 
 	for i := 0; i < num; i++ {
 		oldName := args[i]
-		fmt.Println(oldName)
 		newName := strings.Replace(oldName, " ", "_", -1)
-		fmt.Println(newName)
+		if newName == oldName {
+			continue
+		}
+		fmt.Println(oldName + " > " + newName)
 
 		err := os.Rename(oldName, newName)
 		if err != nil {
