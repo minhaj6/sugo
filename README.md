@@ -7,3 +7,5 @@ If name of the file was "a file name.txt", it will be renamed as "a_file_name.tx
     
 ## Todo
 * Operate on all the files in current working directory in no argument is provided. [done]
+
+![https://imgur.com/517UMGL]
